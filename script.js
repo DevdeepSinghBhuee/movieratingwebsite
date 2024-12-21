@@ -1,54 +1,55 @@
-// Array to store movie objects
-let movies = [];
-
-// Function to render the movie list
-function renderMovies() {
-    const moviesList = document.getElementById('movies-list');
-    moviesList.innerHTML = ''; // Clear existing list
-
-    if (movies.length === 0) {
-        moviesList.innerHTML = '<p>No movies added yet.</p>';
-    } else {
-        movies.forEach((movie, index) => {
-            const movieItem = document.createElement('div');
-            movieItem.classList.add('movie-item');
-
-            movieItem.innerHTML = `
-                <h3>${movie.name}</h3>
-                <p><strong>Rating:</strong> ${movie.rating}/10</p>
-                <p><strong>Description:</strong> ${movie.description}</p>
-            `;
-            moviesList.appendChild(movieItem);
-        });
-    }
-}
-
-// Function to handle form submission
-document.getElementById('movie-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const movieName = document.getElementById('movie-name').value;
-    const movieRating = document.getElementById('movie-rating').value;
-    const movieDescription = document.getElementById('movie-description').value;
-
-    if (movieName && movieRating && movieDescription) {
-        const newMovie = {
-            name: movieName,
-            rating: movieRating,
-            description: movieDescription
-        };
-
-        movies.push(newMovie);
-
-        // Clear form fields
-        document.getElementById('movie-name').value = '';
-        document.getElementById('movie-rating').value = '';
-        document.getElementById('movie-description').value = '';
-
-        // Re-render the movie list
-        renderMovies();
-    }
-});
-
-// Initial render when the page loads
-renderMovies();
+// Toggle description visibility
+document.querySelectorAll('.movie button').forEach(button => {
+    button.addEventListener('click', () => {
+      const description = button.parentElement.querySelector('.description');
+      if (description.style.display === 'none') {
+        description.style.display = 'block';
+        button.textContent = 'Hide Description';
+      } else {
+        description.style.display = 'none';
+        button.textContent = 'Show Description';
+      }
+    });
+  });
+  
+  // Dark Mode Toggle
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+  });
+  
+  // Search Functionality
+  const searchInput = document.getElementById('searchInput');
+  const movieCards = document.querySelectorAll('.movie');
+  
+  searchInput.addEventListener('input', () => {
+    const searchText = searchInput.value.toLowerCase();
+    movieCards.forEach(card => {
+      const title = card.querySelector('h2').textContent.toLowerCase();
+      card.style.display = title.includes(searchText) ? 'block' : 'none';
+    });
+  });
+  
+  // Dynamic Content Loading (optional)
+  const movieData = [
+    { title: 'The Shawshank Redemption', rating: '⭐⭐⭐⭐⭐', description: 'A story of hope and resilience inside a maximum-security prison.' },
+    { title: 'Inception', rating: '⭐⭐⭐⭐☆', description: 'A mind-bending thriller that dives into the world of dreams.' },
+    { title: 'The Dark Knight', rating: '⭐⭐⭐⭐⭐', description: 'A hero must face his darkest foe in Gotham City.' },
+    { title: 'Interstellar', rating: '⭐⭐⭐⭐☆', description: 'A space exploration journey to save humanity.' },
+  ];
+  
+  const movieContainer = document.querySelector('section');
+  
+  movieData.forEach(movie => {
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('movie');
+    movieCard.innerHTML = `
+      <h2>${movie.title}</h2>
+      <p>Rating: ${movie.rating}</p>
+      <div class="description">${movie.description}</div>
+      <button>Show Description</button>
+    `;
+    movieContainer.appendChild(movieCard);
+  });
+  

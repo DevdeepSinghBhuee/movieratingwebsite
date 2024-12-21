@@ -1,61 +1,94 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    color: #ecf0f1;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  header {
+    background: #34495e;
+    padding: 1em;
     text-align: center;
-}
-
-#movies-list {
-    margin-top: 20px;
-}
-
-.movie-item {
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-form {
-    margin-top: 20px;
-}
-
-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-form button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 15px;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    animation: fadeIn 2s ease-in;
+  }
+  
+  button {
+    background: #e74c3c;
+    color: #fff;
     border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
     border-radius: 5px;
     cursor: pointer;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background: #c0392b;
+  }
+  
+  /* Movie Card Styles */
+  .movie {
+    margin-bottom: 1.5em;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .movie h2 {
+    margin-top: 0;
+  }
+  
+  .description {
+    display: none;
+  }
+  
+  /* Dark Mode */
+  body.dark-mode {
+    background: #2c3e50;
+    color: #ecf0f1;
+  }
+  
+  body.dark-mode header {
+    background: #1a252f;
+  }
+  
+  body.dark-mode button {
+    background: #8e44ad;
+  }
+  
+  body.dark-mode button:hover {
+    background: #732d91;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
